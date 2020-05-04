@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <img src="/assets/img/burger.png" alt="">
+            <h1>Eat-Da-Burger</h1>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-6 text-center burger-col">
+            <div class="row">
+                {{#each burger}}
+                    {{#unless this.devoured}}
+                        <div class="col-9 text-center">
+                            <p>{{this.id}}. {{this.burger_name}}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <form class="devour-button">
+                                <input input type="hidden" type="text" class="burger" value={{this.id}}>
+                                <button type="submit" class="btn btn-danger">Devour it!</button>
+                            </form><br>
+                        </div>
+                    {{/unless}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="col-6 text-center devour-col">
+            {{#each burger}}
+                {{#if this.devoured}}
+                    <p>{{this.id}}. {{this.burger_name}}</p>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center my-3">
+            <h3>Enter a burger you would like. Then press Submit.</h3>
+            <form action="/api/burgers" method="POST">
+                <input type="text" class="form-control" name="burger_name" id="burger"><br>
+                <button type="submit" class="btn btn-success" id="submit-form">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
